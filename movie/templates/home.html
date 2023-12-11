@@ -14,14 +14,44 @@
     <h5>Searching for {{ search_term }}</h5>
 </div>
 <div class="flex-container">
-    <form name="search_form" id="search_form" >
+    <form name="search_form" id="search_form">
         <div class="mb-3">
             <label for="search_movie" class="form-label">Search for Movie</label>
             <input type="text" class="form-control" id="search_movie" name="search_movie">
         </div>
-        <button form="search_form"  type="submit" class="btn btn-primary">Submit</button>
+        <button form="search_form" type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<br>
+<br>
+<br>
+<br>
+<div class="flex-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for movie in movies %}
+            <div v-for="movie in movies" class="col">
+                <div class="card">
+                    <img class="card-img-top" height="350" width="150"
+                         src="{{movie.image.url }}"/>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{movie.title}}</h5>
+                        <p class="card-text">{{ movie.description}}</p>
+                        {% if movie.url %}
+                            <a href="{{ movie.url }}"
+                               class="btn btn-primary">
+                                Movie Link
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
 <div class="flex-container">
     <h1>Join our mailing list</h1>
     <form id="mailing_form" name="mailing_form" action="{% url 'signup' %}">

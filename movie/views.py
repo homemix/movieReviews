@@ -4,7 +4,9 @@ from django.shortcuts import render
 
 def home(request):
     search_term = request.GET.get('search_movie')
-    data = {'name': 'kennedy wambua', 'age': 30, 'search_term': search_term}
+    data = {'name': 'kennedy wambua',
+            'age': 30,
+            'search_term': search_term}
 
     return render(request, 'home.html', data)
 

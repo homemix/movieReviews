@@ -13,4 +13,5 @@ This is used for educational purpose only and all the rights reserved by the aut
 6. [x] Chapter 6: Displaying objects from admin.
 7. [x] Chapter 7: understanding database. 
 8. [x] Chapter 8: Extending templates.
-9. [ ] Chapter 9: Creating a movie detail page.
+9. [x] Chapter 9: Creating a movie detail page.
+10. [ ] Chapter 10: Implementing user sign up and login.

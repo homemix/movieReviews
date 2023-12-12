@@ -27,7 +27,7 @@
                     <img class="card-img-top" height="350" width="150"
                          src="{{ movie.image.url }}"/>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+                        <a href="{% url 'detail' movie.id %}"><h5 class="card-title fw-bold">{{ movie.title }}</h5></a>
                         <p class="card-text">{{ movie.description }}</p>
                         {% if movie.url %}
                             <a href="{{ movie.url }}"

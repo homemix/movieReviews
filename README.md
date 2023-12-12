@@ -11,5 +11,6 @@ This is used for educational purpose only and all the rights reserved by the aut
 4. [x] Chapter 4: Generating HTML templates. 
 5. [x] Chapter 5: Working with models.
 6. [x] Chapter 6: Displaying objects from admin.
-7. [x] Chapter 7: understanding database.
-8. [ ] Chapter 8: Extending templates.
+7. [x] Chapter 7: understanding database. 
+8. [x] Chapter 8: Extending templates.
+9. [ ] Chapter 9: Creating a movie detail page.

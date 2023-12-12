@@ -1,7 +1,16 @@
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
 from movie.models import Movie
+
+
+def detail(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+    data = {
+        "movie": movie,
+    }
+    return render(request, 'detail.html', data)
 
 
 def home(request):

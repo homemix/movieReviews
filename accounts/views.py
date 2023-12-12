@@ -1,9 +1,35 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.shortcuts import redirect
+from django.db import IntegrityError
+from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCreateForm
 
 
 def sign_up_account(request):
     data = {
-        "form": UserCreationForm,
+        "form": UserCreateForm,
     }
-    return render(request, 'signup_account.html', data)
+    if request.method == "POST":
+        if request.POST['password1'] == request.POST['password2']:
+            try:
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
+                user.save()
+                login(request, user)
+                return redirect('home')
+            except IntegrityError:
+                data = {
+                    "form": UserCreateForm,
+                    "error": "User already registered"
+                }
+                return render(request, 'signup_account.html', data)
+        else:
+            data = {
+                'error': 'Passwords do not match',
+                'form': UserCreateForm
+            }
+            return render(request, 'signup_account.html', data)
+    else:
+        return render(request, 'signup_account.html', data)

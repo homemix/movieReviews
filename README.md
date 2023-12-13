@@ -14,4 +14,5 @@ This is used for educational purpose only and all the rights reserved by the aut
 7. [x] Chapter 7: understanding database. 
 8. [x] Chapter 8: Extending templates.
 9. [x] Chapter 9: Creating a movie detail page.
-10. [ ] Chapter 10: Implementing user sign up and login.
+10. [x] Chapter 10: Implementing user sign up and login.
+11. [ ] Chapter 11: Letting user CRUD movie reviews.

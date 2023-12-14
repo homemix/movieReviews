@@ -4,8 +4,10 @@ from django.shortcuts import render
 
 from movie.models import Movie, Review
 from .forms import ReviewForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     reviews = Review.objects.filter(movie=movie)
@@ -15,7 +17,7 @@ def detail(request, movie_id):
     }
     return render(request, 'detail.html', data)
 
-
+@login_required
 def create_review(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     if request.method == 'POST':
@@ -40,6 +42,30 @@ def create_review(request, movie_id):
             "form": ReviewForm()
         }
         return render(request, 'create_review.html', data)
+
+@login_required
+def update_review(request, review_id):
+    review = get_object_or_404(
+        Review, pk=review_id, user=request.user)
+    if request.method == 'GET':
+        form = ReviewForm(instance=review)
+        return render(request, 'update_review.html',
+                      {'review': review, 'form': form})
+    else:
+        try:
+            form = ReviewForm(request.POST, instance=review)
+            form.save()
+            return redirect('detail', review.movie.id)
+        except ValueError:
+            return render(request,
+                          'update_review.html',
+                          {'review': review, 'form': form, 'error': 'Bad data in form'})
+
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id, user=request.user)
+    review.delete()
+    return redirect('detail', review.movie.id)
 
 
 def home(request):
